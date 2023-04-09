@@ -1,0 +1,18 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body { 
+    background: black;
+    color: white;
+}
+
+button {
+    background: white;
+    color: black;
+}
+
+#img-topo {
+    background: white;
+}
