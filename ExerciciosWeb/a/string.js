@@ -3,28 +3,25 @@ const saida = document.querySelector("h4")
 
 frm.addEventListener("submit", (e) => {
     e.preventDefault()
-    let text = frm.valor.value;
-    let vetor = text.split(";")
+    let text = frm.valor1.value;
+    let insert = frm.valor2.value;
+    let posicions = frm.valor3.value;
+    let vetor = text.split("")
+    let pos = posicions.split(";")
     let resp = []
-    let aux1 = "";
-    let aux2 = " ";
-    let aux3 = 0;
 
     for(let i = 0; i< vetor[0].length;i++){
-        if(i == vetor[2]){
-            aux3 +=1
+        resp.push(vetor[0][i])
+    }
+    for(let x = 0; x < posicions.length;x++){
+        if(vetor[x] == "0"){
+            resp.splice(text[x],0,insert + " ")
         }
-        if(aux3 == 0){
-            aux1 += vetor[0][i]
+        else if(vetor[x] == vetor[1]){
+            resp.splice(text[x],0," " + insert)
         }else{
-            aux2 += vetor[0][i]
+            resp.splice(text[x],0," " + insert)
         }
     }
-    resp.push(aux1)
-    resp.push(aux2)
-    for(let x = 2; x < vetor.length;x++){
-        resp.splice(x,0,vetor[1])
-    }  
-    aux1 += " "
     saida.innerText = resp.join("")
 })
