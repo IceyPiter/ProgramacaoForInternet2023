@@ -16,11 +16,17 @@ h4{
     margin-top: 15px;
     color: white;
 }
+.image{
+    display: flex;
+    justify-content: center;
+}
 img{
     padding: 15px;
     height: 450px;
     width: 450px;
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 input{
     text-align: center;
