@@ -8,8 +8,8 @@
 }
 
 :root {
-    --bg-color: white;
-    --primary-color: rgb(51, 44, 120);   
+    --bg-color: #33BBC5;
+    --primary-color: rgb(117, 255, 244);   
 }
 
 header {
@@ -39,10 +39,11 @@ body {
     gap: 40px;
 }
 
-.title {
+.tittle {
     font-size: 40px;
     text-align: center;
     color: var(--primary-color);
+    justify-content: center;
 }
 
 .row {
@@ -82,7 +83,7 @@ body {
     font-size: 20px;
     font-weight: bold;
     padding: 0 10px;
-    color: white;
+    color: #33BBC5;
 }
 
 .inputbox input:focus,
@@ -107,7 +108,7 @@ body {
     font-size: 20px;
     font-weight: bold;
     border-radius: 2px;
-    color: white
+    color: #33BBC5;
 }
 
 footer {
