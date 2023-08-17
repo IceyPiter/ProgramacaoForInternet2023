@@ -59,7 +59,7 @@ body {
     height: 40px;
 }
 
-.inputbox label {
+.inputbox h4, .inputbox label {
     position: relative;
     top: 0;
     left: 10px;
@@ -112,5 +112,29 @@ body {
 }
 
 footer {
+    color: var(--primary-color);
+    position: fixed;
+    bottom: 0;
+}
+
+#buttonSave{
+    margin-bottom: 10px;
+}
+
+.informacoes{
+    display: flex;
+}
+
+.images {
+    display: grid;
+}
+
+#listAbilities {
+    margin-left: 190px;
+    color: var(--primary-color);
+}
+
+#listGames {
+    margin-left: 150px;
     color: var(--primary-color);
 }

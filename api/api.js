@@ -2,17 +2,31 @@ async function acharPokemon() {
     let pokemon = document.getElementById("pokemon");
     let url = "https://pokeapi.co/api/v2/pokemon/";
     let pokeEsc = pokemon.value.toLowerCase();
+    const listAbility = document.getElementById("listAbilities")
+    const listGames = document.getElementById("listGames")
+    const listTypes = document.getElementById("listTypes")
     console.log(pokeEsc)
     url = url + pokeEsc;
     const dados = await fetch(url);
     const json_pokemon = await dados.json();
     console.log(json_pokemon)
-    let a = true
-    console.log(json_pokemon.abilities[1].is_hidden)
-    preencherInfo(buscarInfoAbility(json_pokemon),buscarInfoGame(json_pokemon))
+    setImage(json_pokemon)
+    preencherInfo(json_pokemon,listAbility,listGames,listTypes)
+    buscarInfoAbility(json_pokemon,listAbility)
 }
 
-function buscarInfoAbility(lista){
+function setImage(pokemon){
+    var img = document.getElementById("pokeIMG")
+    var img2 = document.getElementById("pokeIMG2")
+    var img3 = document.getElementById("TypeIMG")
+    var img4 = document.getElementById("TypeIMG2")
+    img.setAttribute("src", pokemon.sprites.front_default)
+    img2.setAttribute("src", pokemon.sprites.front_shiny)
+    img.setAttribute("src", pokemon.sprites.front_default)
+    img2.setAttribute("src", pokemon.sprites.front_shiny)
+}
+
+function buscarInfoAbility(lista,list){
     let info = []
     for(let i = 0; i<(lista.abilities).length; i++){
         info.push(lista.abilities[i].ability.name)
@@ -22,30 +36,29 @@ function buscarInfoAbility(lista){
             info.push("Normal Ability")
         }
     }
-    let retorno = ``;
     for(let i = 0; i < info.length; i++){
-        retorno += `${info[i]} --> ${info[i+1]} \n`;
+        let listItems = document.createElement("li");
+        listItems.innerHTML = `${info[i]}(${info[i+1]})`;
+        list.appendChild(listItems);
         i++
     }
-    return(retorno)
 }
 
-function buscarInfoGame(lista){
+function buscarInfoGame(lista,list){
     let info = []
     for(let i = 0; i<(lista.game_indices).length; i++){
         info.push(lista.game_indices[i].version.name)
     }
-    let retorno = ``;
     for(let i = 0; i < info.length; i++){
-        retorno += `${info[i]} \n`;
+        let listItems = document.createElement("li");
+        listItems.innerHTML = `${info[i]}`;
+        list.appendChild(listItems);
     }
-    return(retorno)
 }
 
-function preencherInfo(abilidade,jogos,itens){
-    document.getElementById("ability").value = abilidade;
-    document.getElementById("game_indices").value = jogos;
-    document.getElementById("held-itens").value = pokemon.held_items[0];
+function preencherInfo(json_pokemon,listAbility,listGames,listTypes){
+    buscarInfoAbility(json_pokemon,listAbility)
+    buscarInfoGame(json_pokemon,listGames)
 }
 
 document.getElementById("pokemon").addEventListener("focusout", acharPokemon)
