@@ -9,26 +9,42 @@ async function acharPokemon() {
     console.log(json_pokemon)
     let a = true
     console.log(json_pokemon.abilities[1].is_hidden)
-    preencherInfo(json_pokemon)
+    preencherInfo(buscarInfoAbility(json_pokemon),buscarInfoGame(json_pokemon))
 }
 
-function buscarInfoAbility(pokemon){
+function buscarInfoAbility(lista){
     let info = []
-    for(let i = 0; i<(pokemon.abilities).length; i++){
-        info.push(pokemon.abilities[i].ability.name)
-        if((pokemon.abilities[i].ability.is_hidden)){
+    for(let i = 0; i<(lista.abilities).length; i++){
+        info.push(lista.abilities[i].ability.name)
+        if((lista.abilities[i].ability.is_hidden)){
             info.push("Hidden Ability");
         }else{
             info.push("Normal Ability")
         }
     }
-    return(info)
+    let retorno = ``;
+    for(let i = 0; i < info.length; i++){
+        retorno += `${info[i]} --> ${info[i+1]} \n`;
+        i++
+    }
+    return(retorno)
 }
 
-function preencherInfo(pokemon,abilidade,jogos,itens){
-    console.log(buscarInfoAbility(pokemon))
-    document.getElementById("ability").value = pokemon.abilities[0].ability.name;
-    document.getElementById("game_indices").value = pokemon.base_experience;
+function buscarInfoGame(lista){
+    let info = []
+    for(let i = 0; i<(lista.game_indices).length; i++){
+        info.push(lista.game_indices[i].version.name)
+    }
+    let retorno = ``;
+    for(let i = 0; i < info.length; i++){
+        retorno += `${info[i]} \n`;
+    }
+    return(retorno)
+}
+
+function preencherInfo(abilidade,jogos,itens){
+    document.getElementById("ability").value = abilidade;
+    document.getElementById("game_indices").value = jogos;
     document.getElementById("held-itens").value = pokemon.held_items[0];
 }
 
