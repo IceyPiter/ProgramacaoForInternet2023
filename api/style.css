@@ -127,14 +127,20 @@ footer {
 
 .images {
     display: grid;
+    margin-left: 50px;
 }
 
 #listAbilities {
-    margin-left: 190px;
+    margin-left: 140px;
     color: var(--primary-color);
 }
 
 #listGames {
     margin-left: 150px;
     color: var(--primary-color);
+}
+
+.imagesType{
+    display: grid;
+    margin-left: 210px;
 }

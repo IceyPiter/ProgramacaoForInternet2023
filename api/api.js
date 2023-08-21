@@ -4,26 +4,37 @@ async function acharPokemon() {
     let pokeEsc = pokemon.value.toLowerCase();
     const listAbility = document.getElementById("listAbilities")
     const listGames = document.getElementById("listGames")
-    const listTypes = document.getElementById("listTypes")
+    const img = document.getElementById("pokeIMG")
+    const img2 = document.getElementById("pokeIMG2")
+    const img3 = document.getElementById("TypeIMG")
+    const img4 = document.getElementById("TypeIMG2")
+    listAbility.innerHTML = ""
+    listGames.innerHTML = ""
+    img.setAttribute("src", "")
+    img2.setAttribute("src", "")
+    img3.setAttribute("src", "")
+    img4.setAttribute("src", "")
     console.log(pokeEsc)
     url = url + pokeEsc;
-    const dados = await fetch(url);
-    const json_pokemon = await dados.json();
-    console.log(json_pokemon)
-    setImage(json_pokemon)
-    preencherInfo(json_pokemon,listAbility,listGames,listTypes)
-    buscarInfoAbility(json_pokemon,listAbility)
+    try{
+        const dados = await fetch(url);
+        const json_pokemon = await dados.json(); 
+        console.log(json_pokemon)
+        setImage(json_pokemon,img,img2,img3,img4)
+        preencherInfo(json_pokemon,listAbility,listGames)
+    } catch{
+        alert("Pokemon Inexistente ou Nome Errado")
+    } 
 }
 
-function setImage(pokemon){
-    var img = document.getElementById("pokeIMG")
-    var img2 = document.getElementById("pokeIMG2")
-    var img3 = document.getElementById("TypeIMG")
-    var img4 = document.getElementById("TypeIMG2")
+function setImage(pokemon,img,img2,img3,img4){
     img.setAttribute("src", pokemon.sprites.front_default)
     img2.setAttribute("src", pokemon.sprites.front_shiny)
-    img.setAttribute("src", pokemon.sprites.front_default)
-    img2.setAttribute("src", pokemon.sprites.front_shiny)
+    img3.setAttribute("src", `assets/${pokemon.types[0].type.name}.png`)
+    if(pokemon.types.length == 2){
+        img4.setAttribute("src", `assets/${pokemon.types[1].type.name}.png`)
+    }
+    
 }
 
 function buscarInfoAbility(lista,list){
@@ -56,9 +67,13 @@ function buscarInfoGame(lista,list){
     }
 }
 
-function preencherInfo(json_pokemon,listAbility,listGames,listTypes){
+function preencherInfo(json_pokemon,listAbility,listGames){
     buscarInfoAbility(json_pokemon,listAbility)
     buscarInfoGame(json_pokemon,listGames)
+}
+
+function testarValidade(){
+    
 }
 
 document.getElementById("pokemon").addEventListener("focusout", acharPokemon)
