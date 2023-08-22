@@ -50,12 +50,13 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 40px;
+    margin-bottom: auto;
 }
 
 .inputbox {
     position: relative;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     height: 40px;
 }
 
@@ -113,8 +114,8 @@ body {
 
 footer {
     color: var(--primary-color);
-    position: fixed;
-    bottom: 0;
+    position: relative;
+    top: 500px;
 }
 
 #buttonSave{
@@ -127,20 +128,16 @@ footer {
 
 .images {
     display: grid;
-    margin-left: 50px;
 }
 
 #listAbilities {
-    margin-left: 140px;
     color: var(--primary-color);
 }
 
 #listGames {
-    margin-left: 150px;
     color: var(--primary-color);
 }
 
 .imagesType{
     display: grid;
-    margin-left: 210px;
 }
